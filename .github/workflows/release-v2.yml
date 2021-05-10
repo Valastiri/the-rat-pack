@@ -24,7 +24,7 @@ jobs:
           recursive: false
           dest: client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
   build_release:
-    needs: create_verson
+    needs: create_version
     runs-on: ubuntu-latest
     steps:
       - name: Release
