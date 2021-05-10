@@ -1,0 +1,38 @@
+name: Auto-Tag Release
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  create_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Output Run ID
+        id: buildnumber
+        run: echo ${{ github.run_id }}
+      - name: Output Run Number
+        id: getversion
+        run: echo ${{ github.run_number }}
+      - name: Create client zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: config/ manifest.json
+          recursive: false
+          dest: client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
+  build_release:
+    needs: create_verson
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }})
+        with:
+          files: ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
