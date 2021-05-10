@@ -1,0 +1,27 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - `v*`
+
+jobs:
+  create_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Create client zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: config/ manifest.json
+          recursive: false
+          dest: client-config.zip
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ github.workspace }}/client-config.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
