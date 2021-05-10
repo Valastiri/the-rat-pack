@@ -9,8 +9,8 @@ jobs:
   release_new_tag:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
       - name: Generate build number
         id: buildnumber
         uses: einaregilsson/build-number@v3
@@ -25,12 +25,10 @@ jobs:
           files: config/ manifest.json
           recursive: false
           dest: client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }})
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          files: ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}
+          prerelease: false
+          files: |
+            ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
