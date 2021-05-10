@@ -1,9 +1,9 @@
-name: Auto-Tag Release
+name: Build Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - dev
 
 jobs:
   create_version:
@@ -19,6 +19,7 @@ jobs:
           dest: client-v${{ github.ref }}.zip
       - name: Release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ${{ github.workspace }}/client-v${{ github.ref }}.zip
         env:
