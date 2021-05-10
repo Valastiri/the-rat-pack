@@ -24,3 +24,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}
           prerelease: false
+          title: "Client Config"
+          files: |
+            ./config
+            manifest.json
