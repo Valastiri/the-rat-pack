@@ -19,12 +19,16 @@ jobs:
       - name: Read VERSION file
         id: getversion
         run: echo "::set-output name=version::$(cat VERSION)"
+      - name: Create client zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: config/ manifest.json
+          recursive: false
+          dest: client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}
           prerelease: false
-          title: "Client Config"
           files: |
-            ./config
-            manifest.json
+            ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
