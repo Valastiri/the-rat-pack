@@ -16,11 +16,11 @@ jobs:
         with:
           files: overrides/ manifest.json
           recursive: false
-          dest: client-config.zip
+          dest: client-config-v{{ github.ref }}.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ github.workspace }}/client-config.zip
+          files: ${{ github.workspace }}/client-config-v{{ github.ref }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
