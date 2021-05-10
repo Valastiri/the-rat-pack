@@ -25,10 +25,12 @@ jobs:
           files: config/ manifest.json
           recursive: false
           dest: client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}
-          prerelease: false
-          files: |
-            ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
+          files: ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
