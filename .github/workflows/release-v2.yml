@@ -11,12 +11,14 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Output Run ID
+      - name: Generate build number
         id: buildnumber
-        run: echo ${{ github.run_id }}
-      - name: Output Run Number
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.github_token}}
+      - name: Read VERSION file
         id: getversion
-        run: echo ${{ github.run_number }}
+        run: echo "::set-output name=version::$(cat VERSION)"
       - name: Create client zip
         uses: papeloto/action-zip@v1
         with:
