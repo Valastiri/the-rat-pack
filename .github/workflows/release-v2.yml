@@ -2,8 +2,8 @@ name: Auto-Tag Release
 
 on:
   push:
-    branches:
-      - dev
+    tags:
+      - 'v*'
 
 jobs:
   create_version:
@@ -11,29 +11,16 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Generate build number
-        id: buildnumber
-        uses: einaregilsson/build-number@v3
-        with:
-          token: ${{secrets.github_token}}
-      - name: Read VERSION file
-        id: getversion
-        run: echo "::set-output name=version::$(cat VERSION)"
       - name: Create client zip
         uses: papeloto/action-zip@v1
         with:
           files: config/ manifest.json
           recursive: false
-          dest: client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
-  build_release:
-    needs: create_version
-    runs-on: ubuntu-latest
-    steps:
+          dest: client-v${{ github.ref }}.zip
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }})
         with:
-          files: ${{ github.workspace }}/client-v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}.zip
+          files: ${{ github.workspace }}/client-v${{ github.ref }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
