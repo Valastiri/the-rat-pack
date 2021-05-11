@@ -2,8 +2,8 @@ name: Build Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - dev
 
 jobs:
   create_version:
@@ -23,13 +23,10 @@ jobs:
           files: overrides/config/
           recursive: false
           dest: instance-update.zip
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - uses: actions/upload-artifact@v1
         with:
-          files: |
-            ${{ github.workspace }}/gdlauncher-config.zip
-            ${{ github.workspace }}/instance-update.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: my-artifact
+          path: ${{ github.workspace }}
+
 
 
