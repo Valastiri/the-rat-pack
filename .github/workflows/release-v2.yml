@@ -11,16 +11,24 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Create client zip
+      - name: Create gdlauncher zip
         uses: papeloto/action-zip@v1
         with:
           files: overrides/ manifest.json
           recursive: false
-          dest: client-config.zip
+          dest: gdlauncher-config.zip
+      - name: Create update zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: config/
+          recursive: false
+          dest: instance-update.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ github.workspace }}/client-config.zip
+          files: |
+            ${{ github.workspace }}/client-config.zip
+            ${{ github.workspace }}/instance-update.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
