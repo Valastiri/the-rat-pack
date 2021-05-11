@@ -21,7 +21,6 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           files: overrides/config/
-          recursive: false
           dest: instance-update.zip
       - uses: actions/upload-artifact@v1
         with:
