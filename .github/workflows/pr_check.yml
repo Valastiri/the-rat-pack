@@ -1,6 +1,11 @@
 name: Build Release
 
 on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - ready_for_review
   push:
     tags:
       - 'v*'
@@ -21,15 +26,13 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           files: overrides/config/
-          recursive: false
           dest: instance-update.zip
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - uses: actions/upload-artifact@v1
         with:
-          files: |
-            ${{ github.workspace }}/gdlauncher-config.zip
-            ${{ github.workspace }}/instance-update.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: my-artifact
+          path: ${{ github.workspace }}
+
+
+
 
 
