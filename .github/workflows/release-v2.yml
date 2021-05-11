@@ -6,6 +6,9 @@ on:
       - opened
       - synchronize
       - ready_for_review
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   create_version:
