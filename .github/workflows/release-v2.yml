@@ -28,6 +28,12 @@ jobs:
         with:
           name: my-artifact
           path: ${{ github.workspace }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ github.workspace }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
