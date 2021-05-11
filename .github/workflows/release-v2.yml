@@ -20,14 +20,14 @@ jobs:
       - name: Create update zip
         uses: papeloto/action-zip@v1
         with:
-          files: config/
+          files: overrides/config/
           recursive: false
           dest: instance-update.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ${{ github.workspace }}/client-config.zip
+            ${{ github.workspace }}/gdlauncher-config.zip
             ${{ github.workspace }}/instance-update.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
