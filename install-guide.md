@@ -1,4 +1,4 @@
-# GD Launcher Config
+## GD Launcher Config
 
 To install The Rat Pack download the `gd-launcher.zip` below and save it. Follow these instructions:
 
@@ -11,7 +11,7 @@ To install The Rat Pack download the `gd-launcher.zip` below and save it. Follow
 
 The pack will install and download all the mods from CurseForge for you. 
 
-## Java Arguments
+### Java Arguments
 
 Once the pack is fully installed, please setup the following java arguments to have a smooth experience. Steps:
 
@@ -26,7 +26,7 @@ Once the pack is fully installed, please setup the following java arguments to h
 
 **NOTE:** `-Xmx6G -Xms6G` These two arguments define how much RAM Minecraft will use on your PC. Change the number value (6G in this case) to the amount of Gigabytes you want to use. If you want to have Minecraft use 4GB - `-Xmx4G -Xms4G` for example.
 
-# Updating
+## Updating
 
 To update your local config (if you already have the pack installed) download the `instance-update.zip`
 
@@ -37,6 +37,6 @@ To update your local config (if you already have the pack installed) download th
 5. Drag and drop the contents of `instance-update.zip` into the `config` folder. 
 6. Replace all files.
 
-# Changelog
+## Changelog
 
-- Added this guide 
+- All configs are release ready.
