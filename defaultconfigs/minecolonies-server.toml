@@ -110,7 +110,7 @@
 #All configurations related to the MineColonies commands
 [commands]
 	#Should players be allowed to use the /mc rtp command? [Default: true]
-	canplayerusertpcommand = true
+	canplayerusertpcommand = false
 	#Should players be allowed to use the /mc colony teleport command? [Default: false]
 	canplayerusecolonytpcommand = false
 	#Can players teleport to allied colonies? [Default: true]
