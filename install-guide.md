@@ -1,3 +1,10 @@
+## Changelog
+
+- Add xaerominimap.txt compatibility for Mana & Artifice. 
+    - Prevents UI shading issues with mana bar visible.
+    - NOTE: Minimap Config is custom. Feel free to change it.
+    - To update follow: [Updating Section](#updating) 
+
 ## GD Launcher Config
 
 To install The Rat Pack download the `gd-launcher.zip` below and save it. Follow these instructions:
@@ -36,7 +43,3 @@ To update your local config (if you already have the pack installed) download th
 4. Find the `config` folder and open it.
 5. Drag and drop the contents of `instance-update.zip` into the `config` folder. 
 6. Replace all files.
-
-## Changelog
-
-- All configs are release ready.
