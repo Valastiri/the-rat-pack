@@ -3,7 +3,9 @@
 - Add xaerominimap.txt compatibility for Mana & Artifice. 
     - Prevents UI shading issues with mana bar visible.
     - NOTE: Minimap Config is custom. Feel free to change it.
-    - To update follow: [Updating Section](#updating) 
+- Removed baubles mod (depreciated) from manifest. (If you are updating you need to remove this manually - mod has no conflicts just redundant)
+  
+To update follow: **Updating Section Below**
 
 ## GD Launcher Config
 
