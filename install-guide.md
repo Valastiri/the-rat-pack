@@ -3,7 +3,12 @@
 - Add xaerominimap.txt compatibility for Mana & Artifice. 
     - Prevents UI shading issues with mana bar visible.
     - NOTE: Minimap Config is custom. Feel free to change it.
+- Reduced spawn rate on dungeon_crawl.toml for the spawn boxes. May help alleviate server crashes.   
 - Removed baubles mod (depreciated) from manifest. (If you are updating you need to remove this manually - mod has no conflicts just redundant)
+    - To remove open GD launcher
+    - Right click instance and select `Manage`
+    - Go to Mods and search for `baubles-1.8.7-xxx`
+    - Delete it OR press the slider button to disable.
   
 To update follow: **Updating Section Below**
 
