@@ -14,7 +14,7 @@ jobs:
       - name: Create gdlauncher zip
         uses: papeloto/action-zip@v1
         with:
-          files: overrides/ manifest.json
+          files: manifest.json readme.md install-guide.md
           recursive: false
           dest: gdlauncher-config.zip
       - name: Create update zip
